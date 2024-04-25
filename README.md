@@ -1,4 +1,4 @@
-<h1>Network Security Groups and File Shares</h1>
+<h1>Network Security Groups and File Sharing</h1>
 
 > [!Important]
 > You'll need a Domain Controller with Active Directory installed and Client VM. If you need assistance setting these up, refer to the guide for [Active Directory Configuration](https://github.com/EMoniSmall/ad-configure)
