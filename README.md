@@ -43,12 +43,37 @@ Step 6: Right-click No-Access > Properties > Sharing > Share... > Type **Domain 
 > [!Note]
 > Accounting folder will be skipped for now.
 
-<h2>Attempting to Access the File Shares as a Normal User</h2>
+<h3>Attempting to Access the File Shares as a Normal User</h3>
 
 Step 1: Switch to Client-1 Remote Desktop and open a File Explorer. 
 
-Step 2: In the search bar, type in \\dc-1. You should see the read, write and no-access folders inside.
+Step 2: In the search bar, type in \\dc-1. You should see the read, write, and no-access folders inside.
 
 ![image](https://github.com/EMoniSmall/NetworkFilesConfig/assets/166156618/b856a307-42a2-4cfd-99e8-02d04a81715f)
+
+Step 3: You can attempt to experiment in the folders and see which folders you're allowed to read, create files, or even access at all. 
+
+<h2>Creating a Network Security Group</h2>
+
+> [!Note]
+> For File sharing, a network security group, controls the access of users by restricting or allowing access to authorized users or systems. This helps prevent unauthorized access or malicious activities. This in turn enhances the security of file sharing by helping contain potential security risks and limit the impact of security incidents. 
+
+Step 1: Return to DC-1 and open Active Directory Users and Computers. 
+
+Step 2: Right-click mydomain.com > New > Organizational Unit and name it "Security Groups." 
+
+Step 3: Under Security Groups, right-click > new group > name it Accountants.
+
+Step 4: Back in DC-1's File Explorer, right-click the accounting folder you created earlier > Properties > Sharing > Share... > Type Accountants > Add. Make sure the permission level is set to read/write. 
+ 
+![mstsc_QZLElnNrgt](https://github.com/EMoniSmall/NetworkFilesConfig/assets/166156618/e1dbfa9e-0eef-4c46-b93e-c3938bb4f361)
+
+Step 5: Return to Client-1 and attempt to access the accounting folder. You'll notice access is denied because your normal user profile currently is not in the Accountants Security Group.
+
+Step 6: Go back to DC-1 and open Active Directory Users and Computers > Security Groups > Accountants > Members and enter your normal user profile. In this example it is goku.pubob.
+
+![mstsc_SHXbyuWzd4](https://github.com/EMoniSmall/NetworkFilesConfig/assets/166156618/a597bf3d-1f29-4d34-9054-614039c2640f)
+
+Step 7: In Client-1, you should now be able to access the accounting folder. You may need to log out and log back into Client-1 for the changes to take effect.
 
 
